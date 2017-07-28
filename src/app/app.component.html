@@ -2,17 +2,17 @@
   <div class="row content">
     <div class="col-sm-4 sidenav"></div>
     <div class="col-sm-4 text-left input-box">
-      <div *ngIf="success; else errormsg" class="alert alert-success">Yay!! success</div>
-      <ng-template #errormsg>
-          <div class="alert alert-danger">keep trying!!</div>
-      </ng-template>
-      <div>
+      <div *ngIf="success" class="alert alert-success">Yay!! Success</div>
+      <div *ngIf="inputCounter > 3" class="alert alert-danger">Oops!! You have only 3 attempts!</div>
+      <div class="text-center">
           <label for="userInput">Enter a valid number between ( 1 - 50 ):</label>
           <input type="text"
                  class="form-control"
                  id="userInput"
                  #userInput
+                 (input)="checkRange()"
                  />
+        <div class="col-md-12 counter"><span>you have tried {{inputCounter}} times</span></div>
         <button (click)="getInputValue()" class="btn btn-success">Submit</button>
         <button (click)="clearInputValue()" class="btn btn-danger">Clear</button>
       </div>

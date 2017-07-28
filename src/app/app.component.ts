@@ -7,24 +7,35 @@ import {Component, ViewChild} from '@angular/core';
 })
 export class AppComponent {
   @ViewChild('userInput') userInput;
-  luckyNumber = 19;
-  inputCounter = 0;
-  success:boolean;
+  luckyNumber: number = 19; // hidden predefined number from user
+  inputCounter: number = 0;
+  success: boolean;
 
   getInputValue() {
     this.success = false;
     const inputVal = +this.userInput.nativeElement.value;
-    this.inputCounter++;
-    if (this.inputCounter <= 3) {
-      if (inputVal === this.luckyNumber) {
-        this.success = true;
-      } else {
-        this.success = false;
+    if (inputVal !== 0) {
+      this.inputCounter++;
+      if (this.inputCounter <= 3) {
+        if (inputVal === this.luckyNumber) {
+          this.success = true;
+          this.inputCounter = 0;
+        } else{
+          this.success = false;
+        }
       }
     }
   }
 
   clearInputValue() {
     this.userInput.nativeElement.value = "";
+    this.inputCounter = 0;
+  }
+
+  checkRange() {
+    var input = this.userInput.nativeElement;
+    if (!(input.value >= 1 && input.value <= 50)) {
+      input.value = "";
+    }
   }
 }
