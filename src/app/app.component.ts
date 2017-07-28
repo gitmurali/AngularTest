@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  @ViewChild('userInput') userInput;
+  luckyNumber = 19;
+  inputCounter = 0;
+  success:boolean = false;
+
+  getInputValue() {
+    this.success = false;
+    const inputVal = +this.userInput.nativeElement.value;
+    this.inputCounter++;
+    if (this.inputCounter <= 3) {
+      if (inputVal === this.luckyNumber) {
+        this.success = true;
+      }
+    }
+  }
 }
