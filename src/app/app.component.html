@@ -1,16 +1,20 @@
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-4 sidenav"></div>
-    <div class="col-sm-4 text-left">
+    <div class="col-sm-4 text-left input-box">
+      <div *ngIf="success; else errormsg" class="alert alert-success">Yay!! success</div>
+      <ng-template #errormsg>
+          <div class="alert alert-danger">keep trying!!</div>
+      </ng-template>
       <div>
-          <label for="userInput">Enter a valid number:</label>
+          <label for="userInput">Enter a valid number between ( 1 - 50 ):</label>
           <input type="text"
                  class="form-control"
                  id="userInput"
                  #userInput
                  />
-        <button (click)="getInputValue()">Submit</button>
-        <div *ngIf="success">Yay!! success</div>
+        <button (click)="getInputValue()" class="btn btn-success">Submit</button>
+        <button (click)="clearInputValue()" class="btn btn-danger">Clear</button>
       </div>
     </div>
     <div className="col-sm-4 sidenav"></div>

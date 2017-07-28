@@ -9,7 +9,7 @@ export class AppComponent {
   @ViewChild('userInput') userInput;
   luckyNumber = 19;
   inputCounter = 0;
-  success:boolean = false;
+  success:boolean;
 
   getInputValue() {
     this.success = false;
@@ -18,7 +18,13 @@ export class AppComponent {
     if (this.inputCounter <= 3) {
       if (inputVal === this.luckyNumber) {
         this.success = true;
+      } else {
+        this.success = false;
       }
     }
+  }
+
+  clearInputValue() {
+    this.userInput.nativeElement.value = "";
   }
 }
